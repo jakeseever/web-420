@@ -20,9 +20,21 @@ var mongoose = require('mongoose');
 mongoose.promise = require('bluebird');
 
 var indexRouter = require('./routes/index');
+var apiCatalog = require('./routes/api-catalog');
 //var usersRouter = require('./routes/users');
 
 var app = express();
+
+// Database connection
+
+/**
+ * mongoose.connect()
+ */
+mongoose.connect('mongodb+srv://admin:admin@ems-ap5nb.mongodb.net/test',
+{
+  promiseLibrary: require('bluebird')
+}).then(()=>console.log('Connection Successful'))
+.catch((err) => console.error(err));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,18 +47,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-//app.use('/users', usersRouter);
-
-// Database connection
-
-/**
- * mongoose.connect()
- */
-mongoose.connect('mongodb+srv://admin:admin@ems-ap5nb.mongodb.net/test',
-{
-  promiseLibrary: require('bluebird')
-}).then(()=>console.log('connection successful'))
-.catch((err) => console.error(err));
+app.use('/api', apiCatalog);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
