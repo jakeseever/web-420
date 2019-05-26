@@ -1,3 +1,12 @@
+/*
+============================================
+; Title:  index.js
+; Author: Jake Seever
+; Date:   05 March 2019
+; Description: THe index page route/requirements.
+;===========================================
+*/
+
 var express = require('express');
 var router = express.Router();
 
