@@ -11,12 +11,11 @@
 
 // Require Statements
 
-// var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.promise = require('bluebird');
@@ -32,7 +31,7 @@ var app = express();
 /**
  * mongoose.connect()
  */
-mongoose.connect('mongodb+srv://admin:admin@ems-ap5nb.mongodb.net/test',
+mongoose.connect('mongodb+srv://admin:admin@ems-ap5nb.mongodb.net/api-gateway?retryWrites=true',
 {
   promiseLibrary: require('bluebird')
 }).then(()=>console.log('Connection Successful'))

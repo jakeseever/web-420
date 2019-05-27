@@ -22,7 +22,11 @@ var userSchema = new mongoose.Schema({
     email: String
 });
 
-module.exports = mongoose.model('User', userSchema);
+const User = module.exports = mongoose.model('User', userSchema);
+
+/**
+ Database queries
+ */
 
 // user.save is used to add a new user in our database.
 module.exports.add = (user, callback) => {
@@ -32,7 +36,7 @@ module.exports.add = (user, callback) => {
 // Query users by id from our database.
 module.exports.getByID = (id, callback) => {
   var query = {_id: id};
-  User.findByID(Query, callback);
+  User.findByID(query, callback);
 };
 
 // End

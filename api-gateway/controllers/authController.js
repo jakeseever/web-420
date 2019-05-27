@@ -27,7 +27,7 @@ exports.user_register = function(req, res) {
       email: req.body.email
     });
 
-    User.addListener(newUser, (err, user) => {
+    User.add(newUser, (err, user) => {
       if (err)
         return res.status(500).send('There was a problem registering the user.');
 
@@ -35,7 +35,7 @@ exports.user_register = function(req, res) {
           expiresIn: 86400  //24 hours of time
         });
 
-        res.status(200).send({ auth:true, token: token});
+        res.status(200).send({ auth: true, token: token});
     });
 };
 
@@ -54,6 +54,8 @@ exports.user_token = function(req, res) {
         if (err) return res.status(500).send('There was a problem finding the user.');
 
         if (!user) return res.status(404).send('No user found.');
+
+        res.status(200).send(user);
       });
     });
 };
