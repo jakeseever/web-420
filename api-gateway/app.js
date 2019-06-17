@@ -41,9 +41,9 @@ mongoose.connect('mongodb+srv://admin:admin@ems-ap5nb.mongodb.net/api-gateway?re
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

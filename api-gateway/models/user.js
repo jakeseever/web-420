@@ -36,7 +36,13 @@ module.exports.add = (user, callback) => {
 // Query users by id from our database.
 module.exports.getByID = (id, callback) => {
   var query = {_id: id};
-  User.findByID(query, callback);
+  User.findById(query, callback);
+};
+
+// Query users by email address from our database
+module.exports.getOne = (e, callback) => {
+  var query = {email: e};
+  User.findOne(query, callback);
 };
 
 // End
