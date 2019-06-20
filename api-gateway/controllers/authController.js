@@ -43,21 +43,22 @@ exports.user_register = function(req, res) {
 exports.user_token = function(req, res) {
     //res.send('NOT IMPLEMENTED: User token lookup GET');
 
-    var token = req.headers['x-access-token'];
+   // var token = req.headers['x-access-token'];
 
-    if (!token) return res.status(401).send({ auth: false, message: 'No token was provided'});
+    //if (!token) return res.status(401).send({ auth: false, message: 'No token was provided'});
 
-    jwt.verify(token, config.web.secret, function(err, decoded) {
-      if (err) return res.status(500).send({auth:false, message: "Failed ot authenticate token."});
+   // jwt.verify(token, config.web.secret, function(err, decoded) {
+    //  if (err) return res.status(500).send({auth:false, message: "Failed ot authenticate token."});
 
-      User.getByID(decoded.id, function(err, user) {
+     // User.getByID(decoded.id, function(err, user) {
+       User.getByID(req.userId, function(err, user) {
         if (err) return res.status(500).send('There was a problem finding the user.');
 
         if (!user) return res.status(404).send('No user found.');
 
         res.status(200).send(user);
       });
-    });
+    //});
 };
 
 // Login as an existing user on POST request
